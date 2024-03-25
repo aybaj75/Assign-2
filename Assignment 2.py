@@ -2,69 +2,47 @@
 #Ayaan Bajwa
 #100864399
 
-def mergeSort(arr):
-    if len(arr) > 1:
+from playsound import playsound
+
+def Sort(arr):
+    if len(arr) > 1:  # Base case: if array length is 1 or less, it's already sorted
         
-        a = len(arr)//2
+        mid = len(arr) // 2
+        lH = arr[:mid]
+        RH = arr[mid:]
         
-        l = arr[:a]
+        Sort(lH)  # Recursively sort the left half
+        Sort(RH)  # Recursively sort the right half
         
-        r = arr[a:]
+        # Merge the sorted halves
+        i = j = k = 0
         
-        #Sort The two Halves
-        
-        mergeSort(1)
-        
-        mergeSort(r)
-        
-        b = c = d = 0
-        
-        while b <len(1) and c < len(r):
-            if l[b] < r[c]:
-                
-                arr[d] = l[b]
-                
-                b += 1
-                
+        while i < len(lH) and j < len(RH):
+            if lH[i] < RH[j]:
+                arr[k] = lH[i]
+                i += 1
             else:
-                
-                arr[d] = r[c]
-                
-                c += 1
-                
-            d += 1
-            
-            while b < len(l):
-                
-                arr[d] = l[b]
-                
-                b += 1
-                
-                d += 1
-                
-                while c < len(r):
-                    
-                    arr[d] = r[c]
-                    
-                    c += 1
-                    
-                    d += 1
-                    
+                arr[k] = RH[j]
+                j += 1
+            k += 1
+            playsound("beat.mp3.mp3")
+        # Check if any elements were left
+        while i < len(lH):
+            arr[k] = lH[i]
+            i += 1
+            k += 1
+            playsound("beat.mp3.mp3")
+        while j < len(RH):
+            arr[k] = RH[j]
+            j += 1
+            k += 1
+            playsound("beat.mp3.mp3")
 def printlist(arr):
-    
-    for i in range(len(arr)):
-        
-        print(arr[i], end= " ")
-        
-    print()
-    
+    print(' '.join(str(x) for x in arr))
 
-#Driver Program
-
+# Driver Program
 if __name__ == '__main__':
-    
-    arr = [0,1,3,5,7,9,2,4,6,8]
-    
-    mergeSort(arr)
-    
-    print("Sorted array is: ")
+    arr = [0, 1, 3, 5, 7, 9, 2, 4, 6, 8]
+    Sort(arr)
+    print(" The Sorted array for the following is: ")
+    printlist(arr)
