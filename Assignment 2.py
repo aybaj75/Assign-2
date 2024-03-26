@@ -29,7 +29,7 @@ def Sort(arr):
             else:
                 arr[k] = RH[j]
                 j += 1
-            k += 1
+                k += 1
             playsound("beat.mp3.mp3")
             #Playsound implemntation in while loop
             
